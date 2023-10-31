@@ -1,0 +1,26 @@
+Resources:
+  MyIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: AdminRoleAccess
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: arn:aws:iam::245735739765:user/Sravya
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: MyAdminPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: "*"
+                Resource: "*"
+              - Effect: Deny
+                Action:
+                  - iam:CreateUser
+                  - iam:UpdateUser
+                  - iam:DeleteUser
+                Resource: "*"
